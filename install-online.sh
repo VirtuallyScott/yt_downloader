@@ -136,7 +136,12 @@ section "Installing Python yt-dlp optional packages..."
 # curl-cffi       — TLS browser impersonation (Chrome/Edge/Safari fingerprinting bypass)
 # xattr           — write XDG/Dublin Core metadata to file extended attributes
 echo "  → pip install \"yt-dlp[default,curl-cffi]\" xattr"
-python3 -m pip install --user --quiet "yt-dlp[default,curl-cffi]" xattr < /dev/null
+# Python 3.12+ via Homebrew uses PEP 668 externally-managed-environment.
+# Try plain --user first; if pip refuses, retry with --break-system-packages.
+if ! python3 -m pip install --user --quiet "yt-dlp[default,curl-cffi]" xattr < /dev/null 2>/dev/null; then
+    warn "pip rejected --user install (PEP 668 externally-managed env); retrying with --break-system-packages..."
+    python3 -m pip install --user --quiet --break-system-packages "yt-dlp[default,curl-cffi]" xattr < /dev/null
+fi
 info "yt-dlp Python packages installed"
 
 # ---------------------------------------------------------------------------
