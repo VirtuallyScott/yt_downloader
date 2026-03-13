@@ -14,6 +14,11 @@
 
 set -euo pipefail
 
+# When run as `curl | bash`, stdin is the pipe carrying the rest of the script.
+# Redirect stdin to /dev/null immediately so no subprocess (e.g. brew) can
+# accidentally consume pending script bytes from the pipe.
+exec < /dev/null
+
 # ---------------------------------------------------------------------------
 # ★  Edit these to match your GitHub repository before publishing  ★
 # ---------------------------------------------------------------------------
