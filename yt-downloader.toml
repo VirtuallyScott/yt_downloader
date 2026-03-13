@@ -1,0 +1,51 @@
+# yt-downloader — channel configuration
+#
+# This file is the repository template. After installation the live config lives at:
+#   ~/.config/yt-downloader/yt-downloader.toml
+#
+# Manage channels from the command line:
+#   yt-downloader --add-channel "https://www.youtube.com/@Channel" --DatedDownloads yes
+#   yt-downloader --remove-channel
+#   yt-downloader --list-channels
+#   yt-downloader --download-all
+#
+# ---------------------------------------------------------------------------
+# Per-channel fields
+# ---------------------------------------------------------------------------
+#
+#   url                  (string, required)
+#       Any YouTube channel URL, playlist URL, or URL yt-dlp supports.
+#
+#   download_location    (string, default: ~/Downloads/youTube/<name>)
+#       Directory where video files are saved. Tilde (~) is expanded.
+#
+#   dated_downloads      (bool, default: true)
+#       When true, yt-dlp is run with --dateafter <last_download_utc date>
+#       so only videos uploaded after the previous run are fetched.
+#       Set to false to always sync the full channel / playlist.
+#
+#   cookies_from_browser (string, optional)
+#       Instructs yt-dlp to extract cookies from this browser's store.
+#       Useful for age-restricted or members-only content.
+#       Supported values: chrome, chromium, firefox, safari, edge, opera, brave
+#
+#   last_download_utc    (string, ISO-8601 UTC, managed automatically)
+#       Written by yt-downloader after each successful run.
+#       Override manually to force a re-download from a specific date,
+#       or delete the key to download the entire channel on next run.
+#
+# ---------------------------------------------------------------------------
+# Example entries (uncomment and edit)
+# ---------------------------------------------------------------------------
+
+# [channels.CleetusM]
+# url                  = "https://www.youtube.com/@CleetusM"
+# download_location    = "~/Downloads/youTube/CleetusM"
+# dated_downloads      = true
+# cookies_from_browser = "chrome"
+# last_download_utc    = ""
+
+# [channels.SomePlaylist]
+# url               = "https://www.youtube.com/playlist?list=PLxxxxxxxxxxxxxxxxx"
+# download_location = "~/Downloads/youTube/SomePlaylist"
+# dated_downloads   = false

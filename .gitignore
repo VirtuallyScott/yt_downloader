@@ -1,0 +1,110 @@
+# ---------------------------------------------------------------------------
+# IDEs & editors
+# ---------------------------------------------------------------------------
+
+# JetBrains (PyCharm, IntelliJ, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim / Neovim
+*.swp
+*.swo
+*~
+
+# Visual Studio Code
+.vscode/
+
+# ---------------------------------------------------------------------------
+# macOS
+# ---------------------------------------------------------------------------
+
+# Disk image metadata
+.DS_Store
+.DS_Store?
+
+# Network share metadata
+.AppleDB
+.AppleDesktop
+.AppleDouble
+
+# Finder folder settings
+.localized
+
+# Spotlight index
+.Spotlight-V100
+
+# Trashes
+.Trashes
+._*
+
+# Time Machine exclusion list
+.fseventsd
+
+# Volume icon
+Icon
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+
+# Byte-compiled / optimised / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extension modules
+*.so
+
+# Distribution / packaging
+.eggs/
+*.egg
+*.egg-info/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.cache
+.coverage
+.coverage.*
+.hypothesis/
+.pytest_cache/
+.tox/
+coverage.xml
+htmlcov/
+nosetests.xml
+
+# Virtual environments
+.env
+.venv
+env/
+ENV/
+venv/
+venv.bak/
+
+# mypy / pyright / ruff
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# pyenv
+.python-version
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
