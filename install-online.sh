@@ -14,10 +14,9 @@
 
 set -euo pipefail
 
-# When run as `curl | bash`, stdin is the pipe carrying the rest of the script.
-# Redirect stdin to /dev/null immediately so no subprocess (e.g. brew) can
-# accidentally consume pending script bytes from the pipe.
-exec < /dev/null
+# NOTE: do NOT exec </dev/null here — bash reads this script from stdin when
+# run as `curl | bash`, so redirecting stdin would kill the script mid-run.
+# Instead, each command that might consume stdin gets its own < /dev/null.
 
 # ---------------------------------------------------------------------------
 # ★  Edit these to match your GitHub repository before publishing  ★
@@ -58,7 +57,7 @@ brew_install() {
         info "$formula  (already installed)"
     else
         echo "  → brew install $formula"
-        brew install "$formula"
+        brew install "$formula" < /dev/null
         info "$formula  installed"
     fi
 }
@@ -77,7 +76,7 @@ section "Checking for Homebrew..."
 # ---------------------------------------------------------------------------
 if ! command -v brew &>/dev/null; then
     warn "Homebrew not found — installing now..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
     if [[ -x /opt/homebrew/bin/brew ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
     elif [[ -x /usr/local/bin/brew ]]; then
@@ -137,7 +136,7 @@ section "Installing Python yt-dlp optional packages..."
 # curl-cffi       — TLS browser impersonation (Chrome/Edge/Safari fingerprinting bypass)
 # xattr           — write XDG/Dublin Core metadata to file extended attributes
 echo "  → pip install \"yt-dlp[default,curl-cffi]\" xattr"
-python3 -m pip install --user --quiet "yt-dlp[default,curl-cffi]" xattr
+python3 -m pip install --user --quiet "yt-dlp[default,curl-cffi]" xattr < /dev/null
 info "yt-dlp Python packages installed"
 
 # ---------------------------------------------------------------------------
